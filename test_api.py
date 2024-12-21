@@ -22,7 +22,7 @@ def test_get_weather():
     else:
         print("Error:", response.status_code, response.text)
 
-# Test /recommend endpoint (POST request)
+# Test /recommend end point (POST request)
 def test_recommend():
     print("\nTesting /recommend endpoint...")
     payload = {"plant_name": "Aloe Vera", "location": "London"}
