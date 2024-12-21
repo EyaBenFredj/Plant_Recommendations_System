@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Care Recommendation System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Plant Care Recommendation System</h1>
+        <form id="plantForm">
+            <label for="plantName">Plant Name:</label>
+            <input type="text" id="plantName" placeholder="Enter plant name (e.g., Aloe Vera)" required>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" placeholder="Enter location (e.g., London)" required>
+
+            <button type="button" id="getRecommendation">Get Recommendation</button>
+        </form>
+
+        <div class="result" id="recommendation"></div>
+    </div>
+
+    <script>
+        document.getElementById('getRecommendation').addEventListener('click', async () => {
+            const plantName = document.getElementById('plantName').value.trim();
+            const location = document.getElementById('location').value.trim();
+
+            document.getElementById('recommendation').innerHTML = "";
+
+            if (!plantName || !location) {
+                document.getElementById('recommendation').innerHTML = '<p class="error">Please fill out all fields.</p>';
+                return;
+            }
+
+            const requestBody = { plant_name: plantName, location: location };
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/recommend', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestBody),
+                });
+
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+                const data = await response.json();
+
+                if (data.error) {
+                    document.getElementById('recommendation').innerHTML = `<p class="error">Error: ${data.error}</p>`;
+                } else {
+                    document.getElementById('recommendation').innerHTML = `
+                        <h4>Plant Care Recommendation for ${data.plant_name}:</h4>
+                        <p><strong>Weather in ${data.location}:</strong> ${data.current_weather.temperature}°C, ${data.current_weather.humidity}% humidity</p>
+                        <p><strong>Care Details:</strong></p>
+                        <ul>
+                            <li>Light: ${data.plant_care_details.light}</li>
+                            <li>Optimal Humidity: ${data.plant_care_details.optimal_humidity}%</li>
+                            <li>Optimal Temperature: ${data.plant_care_details.optimal_temperature}°C</li>
+                            <li>Watering Frequency: ${data.plant_care_details.watering_frequency} times/week</li>
+                        </ul>
+                        <p><strong>Recommendation:</strong> ${data.recommendation}</p>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('recommendation').innerHTML = `<p class="error">Error: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
