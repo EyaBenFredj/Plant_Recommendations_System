@@ -22,6 +22,7 @@ Welcome to **PlantSync**, a comprehensive system designed to help you care for y
 ---
 
 ## 🌟 Overview
+![image](https://github.com/user-attachments/assets/c765c40c-3361-42f1-ba33-2ff630977d62)
 
 **PlantSync** provides plant care recommendations by:
 - Predicting watering frequency using machine learning.
