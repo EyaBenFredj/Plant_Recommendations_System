@@ -128,3 +128,99 @@ The Flask app provides:
    ```bash
    git clone https://github.com/your-username/plantsync.git
    cd plantsync
+Install Dependencies:
+
+bash
+Copier le code
+pip install -r requirements.txt
+Run the Application:
+
+bash
+Copier le code
+python app.py
+Access the Web Interface: Visit http://127.0.0.1:5000/ui in your browser.
+
+📂 Project Structure
+bash
+Copier le code
+plantsync/
+│
+├── app.py                # Flask application
+├── index.html            # Front-end interface
+├── plant_care_model.pkl  # Trained machine learning model
+├── requirements.txt      # Python dependencies
+├── README.md             # Project documentation
+├── PlantSync.ipynb       # Google Colab notebook
+🎥 Demo
+Example: Aloe Vera in London
+Enter Aloe Vera and London into the web interface.
+Click Get Recommendation.
+Output:
+Weather: 7.5°C, 74% humidity.
+Recommendation: "Reduce watering. Plants need less water in cooler weather."
+📊 API Endpoints
+/predict:
+
+Method: POST
+Input:
+json
+Copier le code
+{
+    "brightness": 0.5,
+    "temperature": -1.2,
+    "solHumidity": 0.8
+}
+Response:
+json
+Copier le code
+{
+    "watering_frequency": 3
+}
+/get_weather:
+
+Method: GET
+Input:
+ruby
+Copier le code
+?location=London
+Response:
+json
+Copier le code
+{
+    "temperature": 7.5,
+    "humidity": 74
+}
+/recommend:
+
+Method: POST
+Input:
+json
+Copier le code
+{
+    "plant_name": "Aloe Vera",
+    "location": "London"
+}
+Response:
+json
+Copier le code
+{
+    "recommendation": "Reduce watering. Plants need less water in cooler weather.",
+    "weather": {
+        "temperature": 7.5,
+        "humidity": 74
+    },
+    "plant_care_details": {
+        "light": "partial shade",
+        "optimal_humidity": 40,
+        "optimal_temperature": 25,
+        "watering_frequency": 3
+    }
+}
+🤝 Contributing
+Feel free to fork the repository, submit a pull request, or open issues. Contributions are always welcome! 🌟
+
+⚡ Acknowledgments
+Google Colab for machine learning experimentation.
+WeatherAPI for real-time weather data.
+Flask for enabling a seamless web application.
+🌱 Happy Gardening! 🌿
