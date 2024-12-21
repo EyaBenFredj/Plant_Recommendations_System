@@ -59,7 +59,7 @@ The project started with a Google Colab notebook to:
 3. **Evaluate Results**: Validate the model using RMSE and other metrics.
 
 📂 **Notebook Name**: `plant_care_system.ipynb`  
-📎 [Open in Google Colab](https://colab.research.google.com/github/your-username/plant-care-recommendation-system/blob/main/plant_care_system.ipynb)
+📎 [Open in Google Colab](https://colab.research.google.com/github/your-username/plant-care-recommendation-system/blob/main/PlantSync.ipynb)
 
 ---
 
