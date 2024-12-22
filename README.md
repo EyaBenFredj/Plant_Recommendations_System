@@ -130,3 +130,145 @@ The Flask app provides:
    ```bash
    git clone https://github.com/your-username/plantsync.git
    cd plantsync
+
+4. **Access the Web Interface**:
+   Visit `http://127.0.0.1:5000/ui` in your browser.
+
+---
+
+## 🐳 Using Docker
+
+This project includes Docker support, allowing you to containerize and run the application seamlessly.
+
+### Steps to Use Docker
+1. **Build the Docker Image**:
+   From the root of the project, run:
+   ```bash
+   docker build -t plant_recommendations_system .
+   ```
+
+2. **Run the Docker Container**:
+   Use the following command to start the container:
+   ```bash
+   docker run -p 5000:5000 plant_recommendations_system
+   ```
+
+3. **Access the Application**:
+   Open your browser and go to:
+   ```
+   http://localhost:5000
+   ```
+
+4. **Optional: Run in Detached Mode**:
+   If you want the container to run in the background, use:
+   ```bash
+   docker run -d -p 5000:5000 plant_recommendations_system
+   ```
+
+---
+
+## 📂 Project Structure
+
+```
+plantsync/
+│
+├── app.py                # Flask application
+├── templates/            # Contains index.html
+│   └── index.html        # Front-end interface
+├── static/               # CSS, JavaScript, and images
+├── plant_care_model.pkl  # Trained machine learning model
+├── requirements.txt      # Python dependencies
+├── Dockerfile            # Docker configuration
+├── README.md             # Project documentation
+├── PlantSync.ipynb       # Google Colab notebook
+```
+
+---
+
+## 🎥 Demo
+
+### Example: Aloe Vera in London
+1. Enter `Aloe Vera` and `London` into the web interface.
+2. Click **Get Recommendation**.
+3. Output:
+   - Weather: 7.5°C, 74% humidity.
+   - Recommendation: "Reduce watering. Plants need less water in cooler weather."
+
+---
+
+## 📊 API Endpoints
+
+1. **`/predict`**:
+   - **Method**: `POST`
+   - **Input**:
+     ```json
+     {
+         "brightness": 0.5,
+         "temperature": -1.2,
+         "solHumidity": 0.8
+     }
+     ```
+   - **Response**:
+     ```json
+     {
+         "watering_frequency": 3
+     }
+     ```
+
+2. **`/get_weather`**:
+   - **Method**: `GET`
+   - **Input**:
+     ```
+     ?location=London
+     ```
+   - **Response**:
+     ```json
+     {
+         "temperature": 7.5,
+         "humidity": 74
+     }
+     ```
+
+3. **`/recommend`**:
+   - **Method**: `POST`
+   - **Input**:
+     ```json
+     {
+         "plant_name": "Aloe Vera",
+         "location": "London"
+     }
+     ```
+   - **Response**:
+     ```json
+     {
+         "recommendation": "Reduce watering. Plants need less water in cooler weather.",
+         "weather": {
+             "temperature": 7.5,
+             "humidity": 74
+         },
+         "plant_care_details": {
+             "light": "partial shade",
+             "optimal_humidity": 40,
+             "optimal_temperature": 25,
+             "watering_frequency": 3
+         }
+     }
+     ```
+
+---
+
+## 🤝 Contributing
+
+Feel free to fork the repository, submit a pull request, or open issues. Contributions are always welcome! 🌟
+
+---
+
+## ⚡ Acknowledgments
+
+- **Google Colab** for machine learning experimentation.
+- **WeatherAPI** for real-time weather data.
+- **Flask** for enabling a seamless web application.
+- **Docker** for simplifying application deployment and containerization.
+
+🌱 **Happy Gardening!** 🌿
+```
