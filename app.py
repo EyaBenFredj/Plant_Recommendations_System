@@ -1,9 +1,10 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, render_template
 import joblib
 import requests
 from flask_cors import CORS
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 CORS(app)
 
 # Load the trained model
@@ -26,22 +27,15 @@ def get_plant_data(plant_name):
     }
     return plant_dataset.get(plant_name)
 
+# Serve the home page with usage instructions
 @app.route('/')
 def home():
-    return '''
-        <h1>Welcome to the Plant Care Recommendation API!</h1>
-        <p>Use the following endpoints:</p>
-        <ul>
-            <li>/ui - Access the frontend user interface</li>
-            <li>/predict - POST method to predict watering frequency</li>
-            <li>/get_weather - GET method to fetch weather data by location</li>
-            <li>/recommend - POST method to get plant care recommendations</li>
-        </ul>
-    '''
+    return render_template('index.html')
 
+# Serve the frontend UI (index.html)
 @app.route('/ui')
 def serve_ui():
-    return send_from_directory('.', 'index.html')
+    return render_template('index.html')
 
 @app.route('/recommend', methods=['POST'])
 def recommend():
@@ -88,5 +82,18 @@ def recommend():
     except Exception as e:
         return jsonify({'error': str(e)})
 
+# Serve static files correctly
+@app.route('/static/<path:path>')
+def serve_static(path):
+    return send_from_directory('static', path)
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
+
