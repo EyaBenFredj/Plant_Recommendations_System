@@ -271,4 +271,3 @@ Feel free to fork the repository, submit a pull request, or open issues. Contrib
 - **Docker** for simplifying application deployment and containerization.
 
 🌱 **Happy Gardening!** 🌿
-```
