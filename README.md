@@ -13,11 +13,12 @@ Welcome to **PlantSync**, a comprehensive system designed to help you care for y
 6. [Google Colab Notebook](#google-colab-notebook)
 7. [Flask Web Application](#flask-web-application)
 8. [How to Run](#how-to-run)
-9. [Project Structure](#project-structure)
-10. [Demo](#demo)
-11. [API Endpoints](#api-endpoints)
-12. [Contributing](#contributing)
-13. [Acknowledgments](#acknowledgments)
+9. [Using Docker](#using-docker)
+10. [Project Structure](#project-structure)
+11. [Demo](#demo)
+12. [API Endpoints](#api-endpoints)
+13. [Contributing](#contributing)
+14. [Acknowledgments](#acknowledgments)
 
 ---
 
@@ -129,137 +130,3 @@ The Flask app provides:
    ```bash
    git clone https://github.com/your-username/plantsync.git
    cd plantsync
-Install Dependencies:
-
-bash
-Copier le code
-pip install -r requirements.txt
-Run the Application:
-
-bash
-Copier le code
-python app.py
-Access the Web Interface: Visit http://127.0.0.1:5000/ui in your browser.
-### Complete README.md Content for **PlantSync** Project
-
-```markdown
-
-
-2. **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Run the Application**:
-   ```bash
-   python app.py
-   ```
-
-4. **Access the Web Interface**:
-   Visit `http://127.0.0.1:5000/ui` in your browser.
-
----
-
-## 📂 Project Structure
-
-```
-plantsync/
-│
-├── app.py                # Flask application
-├── index.html            # Front-end interface
-├── plant_care_model.pkl  # Trained machine learning model
-├── requirements.txt      # Python dependencies
-├── README.md             # Project documentation
-├── PlantSync.ipynb       # Google Colab notebook
-```
-
----
-
-## 🎥 Demo
-
-### Example: Aloe Vera in London
-1. Enter `Aloe Vera` and `London` into the web interface.
-2. Click **Get Recommendation**.
-3. Output:
-   - Weather: 7.5°C, 74% humidity.
-   - Recommendation: "Reduce watering. Plants need less water in cooler weather."
-
----
-
-## 📊 API Endpoints
-
-1. **`/predict`**:
-   - **Method**: `POST`
-   - **Input**:
-     ```json
-     {
-         "brightness": 0.5,
-         "temperature": -1.2,
-         "solHumidity": 0.8
-     }
-     ```
-   - **Response**:
-     ```json
-     {
-         "watering_frequency": 3
-     }
-     ```
-
-2. **`/get_weather`**:
-   - **Method**: `GET`
-   - **Input**:
-     ```
-     ?location=London
-     ```
-   - **Response**:
-     ```json
-     {
-         "temperature": 7.5,
-         "humidity": 74
-     }
-     ```
-
-3. **`/recommend`**:
-   - **Method**: `POST`
-   - **Input**:
-     ```json
-     {
-         "plant_name": "Aloe Vera",
-         "location": "London"
-     }
-     ```
-   - **Response**:
-     ```json
-     {
-         "recommendation": "Reduce watering. Plants need less water in cooler weather.",
-         "weather": {
-             "temperature": 7.5,
-             "humidity": 74
-         },
-         "plant_care_details": {
-             "light": "partial shade",
-             "optimal_humidity": 40,
-             "optimal_temperature": 25,
-             "watering_frequency": 3
-         }
-     }
-     ```
-
----
-
-## 🤝 Contributing
-
-Feel free to fork the repository, submit a pull request, or open issues. Contributions are always welcome! 🌟
-
----
-
-## ⚡ Acknowledgments
-
-- **Google Colab** for machine learning experimentation.
-- **WeatherAPI** for real-time weather data.
-- **Flask** for enabling a seamless web application.
-
-🌱 **Happy Gardening!** 🌿
-```
-
-This README.md file is fully comprehensive, combining details from Google Colab, Flask API, and the user interface. Copy-paste it directly into your repository's README.md file!
